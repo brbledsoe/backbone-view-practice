@@ -1,0 +1,79 @@
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>View Practice</title>
+
+    <link rel="stylesheet" type="text/css" href="style.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/handlebars.js/4.0.5/handlebars.js"></script>
+    <script src="https://code.jquery.com/jquery-2.2.2.min.js"></script>
+    <script src="http://underscorejs.org/underscore-min.js"></script>
+    <script src="http://backbonejs.org/backbone-min.js"></script>
+  </head>
+
+  <body>
+    <div class="page1 page" data-page="1">
+      <h1>Page 1!</h1>
+    </div>
+    <div class="page2 page" data-page="2">
+      <h1>Page 2!</h1>
+    </div>
+    <div class="page3 page" data-page="3">
+      <h1>Page 3!</h1>
+    </div>
+    <div class="page3 page" data-page="4">
+      <h1>Page 4!</h1>
+    </div>
+    <div class="page3 page" data-page="5">
+      <h1>Page 5!</h1>
+    </div>
+
+    <button class="previous">Previous</button>
+    <button class="next">Next</button>
+
+    <script>
+      var AppModel = Backbone.Model.extend({
+        defaults : {
+          // either 1, 2 or 3
+          currenter_page: 1,
+
+          // max number of pages in app
+          max_page: 5,
+
+          // min number of pages in app
+          min_page: 1
+        }
+      });
+
+      var AppView = Backbone.View.extend({
+        el: $('body'),
+
+        events: {
+          'click .previous': 'previousPage',
+          'click .next': 'nextPage',
+        },
+
+        initialize: function () {
+          // TODO: Finish
+        },
+
+        previousPage: function () {
+          // TODO: Finish
+        },
+
+        nextPage: function () {
+          // TODO: Finish
+        },
+
+        renderPage: function () {
+          // TODO: Finish
+        }
+      });
+
+      var appModel = new AppModel();
+      var appView = new AppView({ model: appModel });
+      appView.render();
+      
+    </script>
+
+  </body>
+</html>

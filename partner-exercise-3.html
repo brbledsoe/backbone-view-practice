@@ -1,0 +1,54 @@
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>View Practice</title>
+
+    <link rel="stylesheet" type="text/css" href="style.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/handlebars.js/4.0.5/handlebars.js"></script>
+    <script src="https://code.jquery.com/jquery-2.2.2.min.js"></script>
+    <script src="http://underscorejs.org/underscore-min.js"></script>
+    <script src="http://backbonejs.org/backbone-min.js"></script>
+  </head>
+
+  <body>
+    <script id="car-template" type="text/x-handlebars-template">
+      <h1> {{ model }} </h1>
+      <h4> ${{ price }} </h4>
+      <h4> {{ color }} </h4>
+    </script>
+
+    <script>
+      var CarModel = Backbone.Model.extend({
+        defaults: {
+          color: '',
+          price: 0,
+          model: ''
+        }
+      });
+
+      var CarView = Backbone.View.extend({
+        className: 'car',
+
+        template: Handlebars.compile($('#car-template').html()),
+
+        render: function () {
+          this.$el.html(this.template(this.model.toJSON()));
+          
+          return this;
+        }
+      });
+
+      var tesla = new CarModel({
+        color: 'Blue',
+        price: 35000,
+        model: 'Model 3'
+      });
+
+      var carView = new CarView({ model: tesla });
+
+      $('body').append(carView.render().el);
+      
+    </script>
+
+  </body>
+</html>

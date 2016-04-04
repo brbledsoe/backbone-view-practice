@@ -1,0 +1,58 @@
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>View Practice</title>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/handlebars.js/4.0.5/handlebars.js"></script>
+    <script src="https://code.jquery.com/jquery-2.2.2.min.js"></script>
+    <script src="http://underscorejs.org/underscore-min.js"></script>
+    <script src="http://backbonejs.org/backbone-min.js"></script>
+  </head>
+
+  <body>
+    <div id="display"></div>
+
+    <input id="dynamic-input"></input>
+
+    <script id="input-template" type="text/x-handlebars-template">
+      <h1> {{ sentence }} </h1>
+    </script>
+
+    <script>
+      var AppModel = Backbone.Model.extend({
+        defaults : {
+          sentence: "hello world"
+        }
+      });
+
+      var AppView = Backbone.View.extend({
+        el: $('body'),
+
+        events: {
+          'keydown input#dynamic-input': 'update'
+        },
+
+        template: Handlebars.compile($('#input-template').html()),
+
+        initialize: function () {
+          // TODO: listen for changes on the model invoke renderText
+          // when necessary
+        },
+
+        update: function () {
+          // TODO: update the model each time the input is changed
+        },
+
+        renderText: function () {
+          this.$el.find('#display').html(this.template(this.model.toJSON()))
+        }
+      });
+
+      var appModel = new AppModel();
+      var appView = new AppView({ model: appModel });
+      appView.render();
+      
+    </script>
+
+  </body>
+</html>
