@@ -29,7 +29,7 @@
         el: $('body'),
 
         events: {
-          'keydown input#dynamic-input': 'update'
+          'keyup input#dynamic-input': 'update'
         },
 
         template: Handlebars.compile($('#input-template').html()),
