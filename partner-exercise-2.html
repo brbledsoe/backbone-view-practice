@@ -37,10 +37,16 @@
         initialize: function () {
           // TODO 2: listen for changes on the model and invoke renderText
           // when necessary
+          this.listenTo(this.model, 'change', this.renderText);
+
         },
 
         update: function () {
           // TODO 1: update the model each time the input is changed
+          var input = $('#dynamic-input').val();
+
+          this.model.set('sentence', input);
+
         },
 
         renderText: function () {

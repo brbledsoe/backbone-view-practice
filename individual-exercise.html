@@ -5,7 +5,7 @@
 
     <link rel="stylesheet" type="text/css" href="style.css">
     <script src="https://cdnjs.cloudflare.com/ajax/libs/handlebars.js/4.0.5/handlebars.js"></script>
-    <script src="https://code.jquery.com/jquery-2.2.2.min.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.2/jquery.min.js"></script>
     <script src="http://underscorejs.org/underscore-min.js"></script>
     <script src="http://backbonejs.org/backbone-min.js"></script>
   </head>
@@ -53,25 +53,69 @@
         },
 
         initialize: function () {
-          // TODO: Finish
+          this.listenTo(this.model, 'change:current_page', this.renderPage);
         },
 
         previousPage: function () {
           // TODO: Finish
+          var currPage = this.model.get('current_page');
+          var minPage = this.model.get('min_page');
+
+          if ( currPage < minPage ) {
+
+            alert("Can't go previous! Stay, or go next.");
+
+            this.model.set('current_page', minPage);
+
+          } else {
+
+            // $('.page' + currPage).toggleClass('page');
+
+            this.model.set('current_page', currPage - 1);
+
+            // this.renderPage();
+
+          }
+
         },
 
         nextPage: function () {
           // TODO: Finish
+          var currPage = this.model.get('current_page');
+          var max_page = this.model.get('max_page');
+
+          if ( currPage === max_page ) {
+
+            alert("No more pages! Stay or go to previous.");
+
+            this.model.set('current_page', max_page);
+
+          } else {
+
+            // $('.page' + currPage).toggleClass('page');
+
+            this.model.set('current_page', currPage + 1);
+
+            // this.renderPage();
+          }
+
+
         },
 
         renderPage: function () {
           // TODO: Finish
+          $('.page').removeClass('show');
+
+          var currPage = this.model.get('current_page');
+
+          $('.page' + currPage).toggleClass('show');
+
         }
       });
 
       var appModel = new AppModel();
       var appView = new AppView({ model: appModel });
-      appView.render();
+      appView.renderPage();
       
     </script>
 

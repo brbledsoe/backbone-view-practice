@@ -11,6 +11,14 @@
   </head>
 
   <body>
+    <input id="color" placeholder="model"></input>
+    <input id="price" placeholder="price"></input>
+    <input id="model" placeholder="color"></input>
+
+    <button id="create">Create</button>
+
+    <section class="yo"></section>
+
     <script id="car-template" type="text/x-handlebars-template">
       <h1> {{ model }} </h1>
       <h4> ${{ price }} </h4>
@@ -38,16 +46,38 @@
         }
       });
 
-      var tesla = new CarModel({
-        color: 'Blue',
-        price: 35000,
-        model: 'Model 3'
+      // new CarModel()
+      // var tesla = new CarModel({
+      //   color: 'Blue',
+      //   price: 35000,
+      //   model: 'Model 3'
+      // });
+
+      // var carView = new CarView({ model: tesla });
+
+      // $('body').append(carView.render().el);
+
+      //on click create a new car model based on users input
+      //then create a new carView with it's model as the new Car model
+      //render our new carView by appending it to page
+      //the above is an example of this 
+      $('#create').on('click', function () {
+        var color = $('#color').val();
+        var price = $('#price').val();
+        var model = $('#model').val();
+
+        var newCarModel = new CarModel({
+          color: color,
+          price: price,
+          model: model
+        });
+
+        var newCarView = new CarView({ model: newCarModel });
+
+        newCarView.render();
+        // $('body').append(newCarView.render().el);
+
       });
-
-      var carView = new CarView({ model: tesla });
-
-      $('body').append(carView.render().el);
-      
     </script>
 
   </body>

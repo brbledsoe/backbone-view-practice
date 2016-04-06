@@ -10,18 +10,24 @@
   </head>
 
   <body>
-
+   
     <script id="input-template" type="text/x-handlebars-template">
       <h1> {{ sentence }} </h1>
     </script>
 
     <script>
+     
       var AppView = Backbone.View.extend({
         template: Handlebars.compile($('#input-template').html()),
+
+        el: $('body'),
 
         render: function () {
           // TODO: use the template function and set the view's el
           // to make some text show up on the page
+          var obj = {sentence: "yo man"};
+
+          this.$el.html(this.template(obj));
         }
       });
 
